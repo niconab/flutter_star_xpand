@@ -1,0 +1,28 @@
+PODS:
+  - Flutter (1.0.0)
+  - flutter_star_prnt_plus (3.0.0):
+    - Flutter
+  - integration_test (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - flutter_star_prnt_plus (from `.symlinks/plugins/flutter_star_prnt_plus/ios`)
+  - integration_test (from `.symlinks/plugins/integration_test/ios`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  flutter_star_prnt_plus:
+    :path: ".symlinks/plugins/flutter_star_prnt_plus/ios"
+  integration_test:
+    :path: ".symlinks/plugins/integration_test/ios"
+
+SPEC CHECKSUMS:
+  Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
+  flutter_star_prnt_plus: e6338b7f55d0b5e6d2499b6767990b549a8b65f7
+  integration_test: 252f60fa39af5e17c3aa9899d35d908a0721b573
+
+PODFILE CHECKSUM: e21d7389e566dac898a8949f4e9ef8b4c0d31563
+
+COCOAPODS: 1.16.2

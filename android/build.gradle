@@ -1,0 +1,59 @@
+group 'io.eddayy.flutter_star_prnt'
+version '3.0.0'
+
+buildscript {
+    ext.kotlin_version = '2.1.0'
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.7.3'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+rootProject.allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+apply plugin: 'com.android.library'
+
+// AGP 9+ compiles Kotlin itself (built-in Kotlin) unless the app sets
+// android.builtInKotlin=false. Older AGP (8.x) always needs kotlin-android.
+def agpMajor = com.android.Version.ANDROID_GRADLE_PLUGIN_VERSION.tokenize('.')[0].toInteger()
+def builtInKotlinOff = (project.findProperty('android.builtInKotlin')?.toString() == 'false')
+if (agpMajor < 9 || builtInKotlinOff) {
+    apply plugin: 'kotlin-android'
+}
+
+android {
+    namespace 'io.eddayy.flutter_star_prnt'
+    compileSdk 36
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+    defaultConfig {
+        // StarIO10 requires API 26+
+        minSdk 26
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+    compilerOptions {
+        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
+    }
+}
+
+dependencies {
+    implementation 'com.starmicronics:stario10:1.12.0'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1'
+}
