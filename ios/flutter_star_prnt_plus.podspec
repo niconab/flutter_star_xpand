@@ -40,7 +40,8 @@ Pod::Spec.new do |s|
   s.license          = { :file => '../LICENSE' }
   s.author           = { 'niconab' => 'anj@nicon.se' }
   s.source           = { :path => '.' }
-  s.source_files     = 'flutter_star_prnt_plus/Sources/flutter_star_prnt_plus/**/*.swift'
+  s.source_files     = 'flutter_star_prnt_plus/Sources/flutter_star_prnt_plus/**/*.{swift,h,m}'
+  s.public_header_files = 'flutter_star_prnt_plus/Sources/flutter_star_prnt_plus/FlutterStarPrntPlugin.h'
   s.dependency 'Flutter'
   s.platform         = :ios, '15.0'
   # StarIO10 (arm64 device, arm64 + x86_64 simulator; no 32-bit slices).

@@ -5,7 +5,7 @@ import StarIO10
 /// flutter_star_prnt_plus re-implemented on Star's StarXpand SDK (StarIO10).
 /// Keeps the original MethodChannel contract ('flutter_star_prnt':
 /// portDiscovery / checkStatus / print) so the Dart API is unchanged.
-public class FlutterStarPrntPlugin: NSObject, FlutterPlugin {
+public class SwiftFlutterStarPrntPlugin: NSObject, FlutterPlugin {
     // Delegate lives in a non-public helper so StarIO10 types don't leak into the
     // generated Objective-C header (which would fail to compile in the host app).
     private lazy var discoveryDelegate = DiscoveryDelegate(owner: self)
@@ -15,7 +15,7 @@ public class FlutterStarPrntPlugin: NSObject, FlutterPlugin {
 
     public static func register(with registrar: FlutterPluginRegistrar) {
         let channel = FlutterMethodChannel(name: "flutter_star_prnt", binaryMessenger: registrar.messenger())
-        let instance = FlutterStarPrntPlugin()
+        let instance = SwiftFlutterStarPrntPlugin()
         registrar.addMethodCallDelegate(instance, channel: channel)
     }
 
@@ -74,7 +74,7 @@ public class FlutterStarPrntPlugin: NSObject, FlutterPlugin {
     fileprivate func didFind(_ printer: StarPrinter) {
         let s = printer.connectionSettings
         var m: [String: Any] = [
-            "portName": FlutterStarPrntPlugin.prefix(s.interfaceType) + s.identifier,
+            "portName": SwiftFlutterStarPrntPlugin.prefix(s.interfaceType) + s.identifier,
             "modelName": printer.information?.model.description ?? "Unknown",
             "interfaceType": s.interfaceType.description,
         ]
@@ -165,8 +165,8 @@ public class FlutterStarPrntPlugin: NSObject, FlutterPlugin {
 }
 
 final class DiscoveryDelegate: NSObject, StarDeviceDiscoveryManagerDelegate {
-    private weak var owner: FlutterStarPrntPlugin?
-    init(owner: FlutterStarPrntPlugin) { self.owner = owner }
+    private weak var owner: SwiftFlutterStarPrntPlugin?
+    init(owner: SwiftFlutterStarPrntPlugin) { self.owner = owner }
     func manager(_ manager: any StarDeviceDiscoveryManager, didFind printer: StarPrinter) {
         owner?.didFind(printer)
     }
