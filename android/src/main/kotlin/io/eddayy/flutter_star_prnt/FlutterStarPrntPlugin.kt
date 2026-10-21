@@ -88,7 +88,8 @@ class FlutterStarPrntPlugin : FlutterPlugin, MethodCallHandler {
 
   private fun interfacesFor(type: String): List<InterfaceType> = when (type) {
     "LAN" -> listOf(InterfaceType.Lan)
-    "Bluetooth" -> listOf(InterfaceType.Bluetooth, InterfaceType.BluetoothLE)
+    // Classic Bluetooth only (bonded devices, ~2 s). BLE scan takes 10 s and is only used for "All".
+    "Bluetooth" -> listOf(InterfaceType.Bluetooth)
     "USB" -> listOf(InterfaceType.Usb)
     else -> listOf(InterfaceType.Lan, InterfaceType.Bluetooth, InterfaceType.BluetoothLE, InterfaceType.Usb)
   }
