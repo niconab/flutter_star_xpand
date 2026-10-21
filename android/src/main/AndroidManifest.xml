@@ -8,5 +8,6 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" android:maxSdkVersion="30" />
     <!-- Bluetooth (Android 12+) - must also be requested at runtime by the app -->
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
-    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" android:usesPermissionFlags="neverForLocation" />
+    <!-- BLUETOOTH_SCAN is declared by the host app. Declaring it here with different flags
+         (neverForLocation) causes INSTALL_PARSE_FAILED_MANIFEST_MALFORMED on Android 16+. -->
 </manifest>
